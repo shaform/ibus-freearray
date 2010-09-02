@@ -1,0 +1,62 @@
+/**
+ * freearray.db
+ * 	is converted by libfreearray from .cin s of scim-array.
+ *
+ * 	All codes whose length are longer than four have been shortened.
+ * 
+ * dict.dat, fonetree.dat, ph_index.dat
+ * 	are converted by sort_dic, maketree in libchewing
+ * 	with the help of libfreearray with freearray.db.
+ *
+ *	FIXME: Some useless data have been accidentally included into
+ * 	the phrase tree.
+ *
+ * symbols.dat
+ * 	is converted by hand from array30.cin of scim-array.
+ */
+/**
+ * These files are free software: you can redistribute them and/or modify
+ * them under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * These files are distributed in the hope that they will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with these files.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+original copyright info for array30.cin in scim-array:
+#######################################################################
+#                                                                     #
+#  array30.cin for OpenVanilla (v0.5), 2005-09-24                     #
+#                                                                     #
+#  本 array30.cin 原始檔案是由霍東靈 Anthony Fok <foka@debian.org>    #
+#  利用行列科技在 porting.exe 檔內提供之 array30.txt 及 arrayhw.txt   #
+#  (05/31/1996) 轉換後，由葉光哲 (gontera) 根據行列科技廖明德先生     #
+#  （即行列輸入法發明人）慷慨提供支援 unicode 3.1 中日韓漢字集共七萬  #
+#  餘字的完整對照檔，製作而成。                                       #
+#                                                                     #
+#  為便於 OpenVanilla 開發團隊製作行列輸入法模組，本 .cin 檔案已移除  #
+#  簡碼及特別碼，另以個別檔案儲存。                                   #
+#                                                                     #
+#  本檔案跟行列科技所提供的原始檔案一樣公開授權，又或可依據 GNU       #
+#  General Public License (GPL) version 2 或新版公開授權，歡迎各界分  #
+#  布及使用。在此謹致謝行列科技之慷慨大方，讓大家可免費自由地使用行   #
+#  列輸入法。                                                         #
+#                                                                     #
+#  有關行列輸入法，請參觀 http://www.array.com.tw/ 內的介紹。         #
+#                                                                     #
+#######################################################################
+#  2005-05-11 vgod配合OpenVanilla 0.7將一級簡碼自本檔移除，另獨立至   #
+#  ArrayShortCode.cin中。                                             #
+#######################################################################
+#  2007-08-08 mainlander將OpenVanilla的行列碼表修改為scim-array之     #
+#  碼表格式。                                                         #
+#######################################################################
+
+

@@ -1,0 +1,11 @@
+2010-05-07  Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+	Fixed the problem that the input box does not disappear when it should.
+
+2010-02-22  Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+	Fix the problem that preedit string would disappear after some characters are committed in Firefox.
+
+2010-02-17  Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+	Fix overflow problem of totalChoiceStr.
+
+2010-02-15  Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+	The first version.
