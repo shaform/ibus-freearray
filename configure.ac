@@ -1,8 +1,8 @@
 #
-# ibus-faft - FreeArray for Test for The Input Bus
+# ibus-freearray - FreeArray for Test for The Input Bus
 #
 # Copyright (c) 2010
-# 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
+# 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # See the file "COPYING" for information on usage and redistribution
 # of this file.
 
-m4_define([package_name], [ibus-faft])
+m4_define([package_name], [ibus-freearray])
 
 # if not 1, append datestamp to the version number.m4_define([ibus_released], [0])
 m4_define([ibus_major_version], [0])
@@ -43,6 +43,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AS_VERSION
 AS_NANO
 AC_PROG_CC
+AC_PROG_CXX
 AM_PROG_CC_C_O
 AC_PROG_RANLIB
 
@@ -60,14 +61,20 @@ PKG_CHECK_MODULES(SQLITE3, [
     sqlite3
 ])
 
+# check freearray
+PKG_CHECK_MODULES(FREEARRAY, [
+    freearray
+])
 
+
+AC_CONFIG_HEADERS([config.h])
 # OUTPUT files
 AC_CONFIG_FILES(Makefile
-ibus-faft.spec
+ibus-freearray.spec
 src/Makefile
-src/faft.xml.in
+src/freearray.xml.in
 setup/Makefile
-setup/ibus-setup-faft
+setup/ibus-setup-freearray
 setup/config.py
 data/Makefile
 icons/Makefile

@@ -21,7 +21,7 @@
 # of this file.
 
 chewingdir = chewing
-freearraydir = freearray
+freearraydir = faport
 faftdir = faft
 mixeddir = mixed
 
@@ -57,11 +57,11 @@ chewing_source = \
 	$(NULL)
 freearray_source = \
 	$(freearraydir)/code.h \
-	$(freearraydir)/code.c \
+	$(freearraydir)/code.cpp \
 	$(freearraydir)/kbtype.h \
-	$(freearraydir)/kbtype.c \
+	$(freearraydir)/kbtype.cpp \
 	$(freearraydir)/tables.h \
-	$(freearraydir)/tables.c \
+	$(freearraydir)/tables.cpp \
 	$(NULL)
 faft_source = \
 	$(faftdir)/acdata.h \
@@ -76,7 +76,11 @@ faft_source = \
 mixed_source = \
 	$(mixeddir)/char-private.h \
 	$(NULL)
-noinst_LIBRARIES = libfaft.a
+noinst_LIBRARIES = \
+	libfaft.a \
+	$(NULL)
+
+
 libfaft_a_SOURCES = \
 	$(freearray_source) \
 	$(chewing_source) \
@@ -86,6 +90,7 @@ libfaft_a_SOURCES = \
 libfaft_a_CFLAGS = \
 	-DFAFT_CHEWING \
 	$(NULL)
+
 
 libexec_PROGRAMS = ibus-engine-faft
 ibus_engine_faft_SOURCES = \
@@ -98,6 +103,7 @@ ibus_engine_faft_SOURCES = \
 ibus_engine_faft_CFLAGS = \
 	@IBUS_CFLAGS@ \
 	@SQLITE3_CFLAGS@ \
+	@FREEARRAY_CFLAGS@ \
 	-DPKGDATADIR=\"$(pkgdatadir)\" \
 	-DLIBEXECDIR=\"$(libexecdir)\" \
 	-DFAFT_CHEWING \
@@ -105,26 +111,27 @@ ibus_engine_faft_CFLAGS = \
 ibus_engine_faft_LDFLAGS = \
 	@IBUS_LIBS@ \
 	@SQLITE3_LIBS@ \
+	@FREEARRAY_LIBS@ \
 	$(NULL)
 ibus_engine_faft_LDADD = \
 	libfaft.a \
 	$(NULL)
 
 component_DATA = \
-	faft.xml \
+	freearray.xml \
 	$(NULL)
 componentdir = @datadir@/ibus/component
 
 
 EXTRA_DIST = \
-	faft.xml.in \
+	freearray.xml.in \
 	$(NULL)
 
 CLEANFILES = \
-	faft.xml \
+	freearray.xml \
 	$(NULL)
 
-faft.xml: faft.xml.in
+freearray.xml: freearray.xml.in
 	( \
 		libexecdir=${libexecdir}; \
 		pkgdatadir=${pkgdatadir}; \
@@ -132,8 +139,8 @@ faft.xml: faft.xml.in
 		eval "echo \"$${s}\""; \
 	) > $@
 
-test: ibus-engine-faft
-	$(builddir)/ibus-engine-faft
+test: ibus-engine-freearray
+	$(builddir)/ibus-engine-freearray
 
 
 
@@ -141,21 +148,23 @@ test: ibus-engine-faft
 
 
 
-noinst_PROGRAMS = faft-test
-faft_test_SOURCES = \
+noinst_PROGRAMS = freearray-test
+freearray_test_SOURCES = \
 	test.c \
 	$(NULL)
-faft_test_CFLAGS = \
+freearray_test_CFLAGS = \
 	@IBUS_CFLAGS@ \
 	@SQLITE3_CFLAGS@ \
+	@FREEARRAY_LIBS@ \
 	-DPKGDATADIR=\"$(pkgdatadir)\" \
 	-DLIBEXECDIR=\"$(libexecdir)\" \
 	-DFAFT_CHEWING \
 	$(NULL)
-faft_test_LDFLAGS = \
+freearray_test_LDFLAGS = \
 	@IBUS_LIBS@ \
 	@SQLITE3_LIBS@ \
+	@FREEARRAY_LIBS@ \
 	$(NULL)
-faft_test_LDADD = \
+freearray_test_LDADD = \
 	libfaft.a \
 	$(NULL)

@@ -32,7 +32,7 @@
 #include "chewing/dict-private.h"
 #include "chewing/choice-private.h"
 
-#include "freearray/tables.h"
+#include "faport/tables.h"
 
 #include <stdlib.h>
 #include <ctype.h>

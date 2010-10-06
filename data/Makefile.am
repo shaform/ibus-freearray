@@ -20,10 +20,6 @@
 # See the file "COPYING" for information on usage and redistribution
 # of this file.
 
-freearray_data = \
-	freearray.db \
-	$(NULL)
-
 chewing_data = \
 	dict.dat \
 	fonetree.dat \
@@ -36,14 +32,12 @@ extra_data = \
 	$(NULL)
 
 datatable_DATA = \
-	$(freearray_data) \
 	$(chewing_data) \
 	$(NULL)
 
 datatabledir = $(pkgdatadir)/data
 
 EXTRA_DIST = \
-	$(freearray_data) \
 	$(chewing_data) \
 	$(extra_data) \
 	$(NULL)

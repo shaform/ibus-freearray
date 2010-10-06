@@ -1,5 +1,5 @@
 #
-# ibus-faft - FreeArray for Test for The Input Bus
+# ibus-freearray - FreeArray for Test for The Input Bus
 #
 # Copyright (c) 2010
 # 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
@@ -20,22 +20,22 @@
 # See the file "COPYING" for information on usage and redistribution
 # of this file.
 
-ibus_setup_faft_PYTHON = \
+ibus_setup_freearray_PYTHON = \
 	main.py \
 	$(NULL)
 
-nodist_ibus_setup_faft_PYTHON = config.py
+nodist_ibus_setup_freearray_PYTHON = config.py
 
-ibus_setup_faftdir = $(datadir)/ibus-faft/setup
+ibus_setup_freearraydir = $(datadir)/ibus-freearray/setup
 
-libexec_SCRIPTS = ibus-setup-faft
+libexec_SCRIPTS = ibus-setup-freearray
 
 CLEANFILES = \
 	*.pyc \
 	$(NULL)
 
 EXTRA_DIST = \
-	ibus-setup-faft.in \
+	ibus-setup-freearray.in \
 	$(NULL)
 
 test:

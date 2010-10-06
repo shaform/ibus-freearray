@@ -1,9 +1,4 @@
 /**
- * freearray.db
- * 	is converted by libfreearray from .cin s of scim-array.
- *
- * 	All codes whose length are longer than four have been shortened.
- * 
  * dict.dat, fonetree.dat, ph_index.dat
  * 	are converted by sort_dic, maketree in libchewing
  * 	with the help of libfreearray with freearray.db.

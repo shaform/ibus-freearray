@@ -24,7 +24,7 @@
 #include "chewing/chewingutil.h"
 #include "chewing/mod_aux.h"
 #include "chewing/chewing-utf8-util.h"
-#include "freearray/tables.h"
+#include "faport/tables.h"
 #include "faft-util.h"
 /* Routines */
 int faft_data_add_symbol(const char *s, ChewingData *data)

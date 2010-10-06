@@ -91,7 +91,7 @@ typedef struct {
 } IntervalType;
 
 #ifdef FAFT_CHEWING
-#include "freearray/code.h"
+#include "faport/code.h"
 typedef ArrayCode uint16;
 #else
 typedef unsigned short uint16;

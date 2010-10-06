@@ -29,8 +29,8 @@
 #ifndef FAFT_ACDATA_H
 #define FAFT_ACDATA_H
 
-#include "freearray/kbtype.h"
-#include "freearray/code.h"
+#include "faport/kbtype.h"
+#include "faport/code.h"
 
 #define AC_ABSORB 1
 #define AC_COMMIT 2

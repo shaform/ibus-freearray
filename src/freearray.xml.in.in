@@ -1,0 +1,30 @@
+<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<!-- filename: faft.xml -->
+<component>
+	<name>org.freedesktop.IBus.FreeArray</name>
+	<description>FreeArray Component</description>
+	<exec>${libexecdir}/ibus-engine-freearray --ibus</exec>
+	<version>@VERSION@</version>
+	<author>Yong-Siang Shih (Shaform)</author>
+	<license>GPLv3+</license>
+	<homepage>http://code.google.com/p/freearray/</homepage>
+	<textdomain>ibus-freearray</textdomain>
+
+	<engines>
+		<engine>
+			<name>freearray</name>
+			<language>zh_TW</language>
+			<license>GPLv3+</license>
+			<author>Yong-Siang Shih (Shaform)</author>
+			<icon>${pkgdatadir}/icons/ibus-freearray.svg</icon>
+			<layout>us</layout>
+			<longname>FreeArray</longname>
+			<description>ibus-faft is a Chinese input engine for IBus.
+Based on Array 30, it includes the phrasing module of libchewing and introduces a new way of inputting symbols called Array Symbol Input.  Also, it fully supports qwerty &amp; dvorak keyboard layouts.
+
+ibus-faft is a technical preview and experimental work of freearray input method.
+It is intended to be used to test the possibility of freearray only.</description>
+		</engine>
+	</engines>
+
+</component>

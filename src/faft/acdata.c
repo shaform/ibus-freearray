@@ -20,7 +20,7 @@
  * See the file "COPYING" for information on usage and redistribution
  * of this file.
  */
-#include "freearray/code.h"
+#include "faport/code.h"
 #include "acdata.h"
 int faft_acdata_input(ACData *acd, FAFTKeyCode kc)
 {

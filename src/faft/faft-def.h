@@ -23,7 +23,7 @@
 #ifndef FAFT_DEF_H
 #define FAFT_DEF_H
 #include "chewing/chewing-private.h"
-#include "freearray/kbtype.h"
+#include "faport/kbtype.h"
 
 
 typedef struct {
