@@ -43,7 +43,7 @@ ArrayCode keytocode(const FAFTKeyCode codes[])
 
 int valid_kc(FAFTKeyCode kc)
 {
-	return freearray::is_key_valid(kc);
+	return freearray::is_key_valid(kc) || freearray::is_key_end(kc);
 }
 
 int valid_ac(ArrayCode ac)

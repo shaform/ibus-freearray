@@ -1,5 +1,5 @@
 #
-# ibus-freearray - FreeArray for Test for The Input Bus
+# ibus-freearray - FreeArray for The Input Bus
 #
 # Copyright (c) 2010
 # 	Yong-Siang Shih (Shaform) <shaform@gmail.com>

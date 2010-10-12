@@ -4,7 +4,7 @@
 Name:       @PACKAGE_NAME@
 Version:    @PACKAGE_VERSION@
 Release:    1%{?dist}
-Summary:    IBus FreeArray for Test project
+Summary:    IBus FreeArray
 License:    GPLv3+
 Group:      System Environment/Libraries
 URL:        http://code.google.com/p/freearray/
@@ -16,9 +16,9 @@ Requires:   ibus
 Requires:   python
 
 %description
-ibus-faft - FreeArray for Test for the Input Bus
+ibus-freearray - FreeArray for the Input Bus
 
-ibus-faft is a Chinese input engine for IBus.
+ibus-freearray is a Chinese input engine for IBus.
 Based on Array 30, it includes the phrasing module of libchewing and
 introduces a new way of inputting symbols called Array Symbol Input.
 %prep
@@ -43,18 +43,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING README
 # %dir %{python_sitearch}/ibus
 # %{python_sitearch}/ibus/*
-%dir %{_datadir}/ibus-faft
-%{_datadir}/ibus-faft
-%{_bindir}/ibus-engine-faft
-%{_datadir}/ibus/engine/faft.engine
+%dir %{_datadir}/ibus-freearray
+%{_datadir}/ibus-freearray
+%{_bindir}/ibus-engine-freearray
+%{_datadir}/ibus/engine/freearray.engine
 
 %changelog
 
-* Fri Feb 15 2010 Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+* Fri Feb 15 2010 Yong-Siang Shih (Shaform)  <shaform at gmail.com>
 - The first version.
-* Wed Feb 17 2010 Yong-Siang Shih (Shaform)  <shaform@gmail.com>
-- Fix overflow problem of totalChoiceStr.
-* Mon Feb 22 2010 Yong-Siang Shih (Shaform)  <shaform@gmail.com>
-- Fix the problem that preedit string would disappear after some characters are committed in Firefox.
-* Fri May 07 2010 Yong-Siang Shih (Shaform)  <shaform@gmail.com>
+* Wed Feb 17 2010 Yong-Siang Shih (Shaform)  <shaform at gmail.com>
+- Fixed overflow problem of totalChoiceStr.
+* Mon Feb 22 2010 Yong-Siang Shih (Shaform)  <shaform at gmail.com>
+- Fixed the problem that preedit string would disappear after some characters are committed in Firefox.
+* Fri May 07 2010 Yong-Siang Shih (Shaform)  <shaform at gmail.com>
 - Fixed the problem that the input box does not disappear when it should.
+* Thu Oct 07 2010 Yong-Siang Shih (Shaform)  <shaform at gmail.com>
+- Changed it to ibus-freearray.

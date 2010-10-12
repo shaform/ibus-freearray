@@ -19,11 +19,8 @@
 			<icon>${pkgdatadir}/icons/ibus-freearray.svg</icon>
 			<layout>us</layout>
 			<longname>FreeArray</longname>
-			<description>ibus-faft is a Chinese input engine for IBus.
-Based on Array 30, it includes the phrasing module of libchewing and introduces a new way of inputting symbols called Array Symbol Input.  Also, it fully supports qwerty &amp; dvorak keyboard layouts.
-
-ibus-faft is a technical preview and experimental work of freearray input method.
-It is intended to be used to test the possibility of freearray only.</description>
+			<description>ibus-freearray is a Chinese input engine for IBus.
+Based on Array 30, it includes the phrasing module of libchewing and introduces a new way of inputting symbols called Array Symbol Input.  Also, it fully supports qwerty &amp; dvorak keyboard layouts.</description>
 		</engine>
 	</engines>
 

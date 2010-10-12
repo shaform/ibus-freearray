@@ -1,8 +1,8 @@
 #
-# ibus-faft - FreeArray for Test for The Input Bus
+# ibus-freearray - FreeArray for The Input Bus
 #
 # Copyright (c) 2010
-# 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
+# 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -92,15 +92,15 @@ libfaft_a_CFLAGS = \
 	$(NULL)
 
 
-libexec_PROGRAMS = ibus-engine-faft
-ibus_engine_faft_SOURCES = \
+libexec_PROGRAMS = ibus-engine-freearray
+ibus_engine_freearray_SOURCES = \
 	main.c \
-	ibus-faft-engine.c \
-	ibus-faft-engine.h \
+	ibus-freearray-engine.c \
+	ibus-freearray-engine.h \
 	properties.c \
 	properties.h \
 	$(NULL)
-ibus_engine_faft_CFLAGS = \
+ibus_engine_freearray_CFLAGS = \
 	@IBUS_CFLAGS@ \
 	@SQLITE3_CFLAGS@ \
 	@FREEARRAY_CFLAGS@ \
@@ -108,12 +108,12 @@ ibus_engine_faft_CFLAGS = \
 	-DLIBEXECDIR=\"$(libexecdir)\" \
 	-DFAFT_CHEWING \
 	$(NULL)
-ibus_engine_faft_LDFLAGS = \
+ibus_engine_freearray_LDFLAGS = \
 	@IBUS_LIBS@ \
 	@SQLITE3_LIBS@ \
 	@FREEARRAY_LIBS@ \
 	$(NULL)
-ibus_engine_faft_LDADD = \
+ibus_engine_freearray_LDADD = \
 	libfaft.a \
 	$(NULL)
 

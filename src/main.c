@@ -1,15 +1,15 @@
 /** 
  * @file main.c
- * @brief FreeArray for Test for ibus
+ * @brief FreeArray for ibus
  */
 /**
- * ibus-faft - FreeArray for Test for The Input Bus
+ * ibus-freearray - FreeArray for Test for The Input Bus
  *
  * Modified from ibus-array project.
  * Copyright (c) 2009  Yu-Chun Wang <mainlander1122@gmail.com>
  *
  * Copyright (c) 2010
- * 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
+ * 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
  */
 #include <stdlib.h>
 #include <ibus.h>
-#include "ibus-faft-engine.h"
+#include "ibus-freearray-engine.h"
 
 static IBusBus *bus = NULL;
 static IBusFactory *factory = NULL;
@@ -61,29 +61,29 @@ static void init (void)
 
 	factory = ibus_factory_new (ibus_bus_get_connection (bus));
 
-	ibus_factory_add_engine (factory, "faft", IBUS_TYPE_FAFT_ENGINE);
+	ibus_factory_add_engine (factory, "freearray", IBUS_TYPE_FREEARRAY_ENGINE);
 
 	if (ibus)
-		ibus_bus_request_name (bus, "org.freedesktop.IBus.FAFT", 0);
+		ibus_bus_request_name (bus, "org.freedesktop.IBus.FreeArray", 0);
 	else {
 		IBusComponent *component;
 
-		component = ibus_component_new ("org.freedesktop.IBus.FAFT",
+		component = ibus_component_new ("org.freedesktop.IBus.FreeArray",
 				"FreeArray for Test Component",
 				"0.0.0",
 				"GPLv3+",
-				"Yong-Siang Shih (Shaform) <shaform@gmail.com>",
+				"Yong-Siang Shih (Shaform) <shaform at gmail.com>",
 				"http://code.google.com/p/freearray/",
 				"",
-				"ibus-faft");
+				"ibus-freearray");
 		ibus_component_add_engine (component,
-				ibus_engine_desc_new ("faft",
-					"FreeArray for Test",
-					"FrreArray Input Method for Test Only",
+				ibus_engine_desc_new ("freearray",
+					"FreeArray",
+					"FrreArray Input Method",
 					"zh_TW",
 					"GPLv3+",
-					"Yong-Siang Shih (Shaform) <shaform@gmail.com>",
-					PKGDATADIR"/icons/ibus-faft.svg",
+					"Yong-Siang Shih (Shaform) <shaform at gmail.com>",
+					PKGDATADIR"/icons/ibus-freearray.svg",
 					"us"));
 		ibus_bus_register_component (bus, component);
 
@@ -96,9 +96,9 @@ int main(gint argc, gchar **argv)
 	GError *error = NULL;
 	GOptionContext *context;
 
-	context = g_option_context_new ("- ibus faft engine component");
+	context = g_option_context_new ("- ibus freearray engine component");
 
-	g_option_context_add_main_entries (context, entries, "ibus-faft");
+	g_option_context_add_main_entries (context, entries, "ibus-freearray");
 
 	if (!g_option_context_parse (context, &argc, &argv, &error)) {
 		g_print ("Option parsing failed: %s\n", error->message);

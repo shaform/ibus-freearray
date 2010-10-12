@@ -1,8 +1,8 @@
 /**
- * ibus-faft - FreeArray for Test for The Input Bus
+ * ibus-freearray - FreeArray for The Input Bus
  *
  * Copyright (c) 2010
- * 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
+ * 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 #include <ibus.h>
 
-#define IBUS_TYPE_FAFT_ENGINE	\
+#define IBUS_TYPE_FREEARRAY_ENGINE	\
 	(ibus_faft_engine_get_type())
 
 GType ibus_faft_engine_get_type (void);

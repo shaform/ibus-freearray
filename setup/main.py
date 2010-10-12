@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# ibus-faft setup dialog
+# ibus-freearray setup dialog
 #
-# ibus-faft - FreeArray for Test for The Input Bus
+# ibus-freearray - FreeArray for The Input Bus
 #
 # Copyright (c) 2010
-# 	Yong-Siang Shih (Shaform) <shaform@gmail.com>
+# 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import config
 
 class Setup:
 	def __init__(self):
-		"""Constructor for the ibus-faft Setup dialog."""
+		"""Constructor for the ibus-freearray Setup dialog."""
 
 		# Set up settings
 		self.setting_types = ('General', 'Select', 'Modules')
@@ -76,8 +76,8 @@ class Setup:
 
 	def __create_ui(self):
 		# Setup Dialog
-		self.__window = gtk.Dialog('ibus-faft Setup', None, gtk.DIALOG_MODAL)
-		icon_file = os.path.join(config.datadir, 'ibus-faft', 'icons', "ibus-faft.svg")
+		self.__window = gtk.Dialog('ibus-freearray Setup', None, gtk.DIALOG_MODAL)
+		icon_file = os.path.join(config.datadir, 'ibus-freearray', 'icons', "ibus-freearray.svg")
 		self.__window.set_icon_from_file(icon_file)
 
 		# Tabs
@@ -163,7 +163,7 @@ class Setup:
 
 
 	def on_value_changed(self, config, section, name, value, data):
-		if section == 'engine/FAFT' and name in self.__current_settings:
+		if section == 'engine/FreeArray' and name in self.__current_settings:
 			if name == 'KbType':
 				self.__kbt_cb.set_active(int(value))
 
@@ -178,10 +178,10 @@ class Setup:
 			self.__current_settings[key][1] = self.__read(key, self.__current_settings[key][1])
 
 	def __read(self, name, v):
-		return self.__config.get_value("engine/FAFT", name, v)
+		return self.__config.get_value("engine/FreeArray", name, v)
 
 	def __write(self, name, v):
-		return self.__config.set_value("engine/FAFT", name, v)
+		return self.__config.set_value("engine/FreeArray", name, v)
 
 if __name__ == '__main__':
 	Setup().run()

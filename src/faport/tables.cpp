@@ -27,12 +27,13 @@
  * See the file "COPYING" for information on usage and redistribution
  * of this file.
  */
-#include <string.h>
-#include <stdio.h>
-#include <limits.h>
+#include <cstring>
+#include <cstdio>
+#include <climits>
 #include <sqlite3.h>
 #include "tables.h"
 #include "code.h"
+using namespace std;
 
 #define DB_FILE "freearray.db"
 #define TC_TABLE "TC_CHAR"
