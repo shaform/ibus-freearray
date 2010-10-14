@@ -33,6 +33,7 @@ extra_data = \
 
 datatable_DATA = \
 	$(chewing_data) \
+	freearray.db \
 	$(NULL)
 
 datatabledir = $(pkgdatadir)/data
