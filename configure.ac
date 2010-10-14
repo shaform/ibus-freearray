@@ -66,6 +66,8 @@ PKG_CHECK_MODULES(FREEARRAY, [
     freearray
 ])
 
+AC_PREFIX_DEFAULT(/usr)
+AC_PREFIX_PROGRAM(ibus-daemon)
 
 AC_CONFIG_HEADERS([config.h])
 # OUTPUT files
