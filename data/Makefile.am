@@ -41,4 +41,5 @@ datatabledir = $(pkgdatadir)/data
 EXTRA_DIST = \
 	$(chewing_data) \
 	$(extra_data) \
+	freearray.db \
 	$(NULL)
