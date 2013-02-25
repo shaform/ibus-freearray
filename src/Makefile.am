@@ -76,20 +76,27 @@ faft_source = \
 mixed_source = \
 	$(mixeddir)/char-private.h \
 	$(NULL)
-noinst_LIBRARIES = \
-	libfaft.a \
-	$(NULL)
+#noinst_LTLIBRARIES = \
+#	libfaft.la \
+#	$(NULL)
+#
+#
+#libfaft_la_SOURCES = \
+#	$(freearray_source) \
+#	$(chewing_source) \
+#	$(faft_source) \
+#	$(mixed_source) \
+#	$(NULL)
+#libfaft_la_CFLAGS = \
+#	-DFAFT_CHEWING \
+#	$(NULL)
 
-
-libfaft_a_SOURCES = \
-	$(freearray_source) \
-	$(chewing_source) \
-	$(faft_source) \
-	$(mixed_source) \
-	$(NULL)
-libfaft_a_CFLAGS = \
-	-DFAFT_CHEWING \
-	$(NULL)
+libfaft_source = \
+ 	$(freearray_source) \
+ 	$(chewing_source) \
+ 	$(faft_source) \
+ 	$(mixed_source) \
+ 	$(NULL)
 
 
 libexec_PROGRAMS = ibus-engine-freearray
@@ -99,6 +106,7 @@ ibus_engine_freearray_SOURCES = \
 	ibus-freearray-engine.h \
 	properties.c \
 	properties.h \
+ 	$(libfaft_source) \
 	$(NULL)
 ibus_engine_freearray_CFLAGS = \
 	@IBUS_CFLAGS@ \
@@ -113,9 +121,9 @@ ibus_engine_freearray_LDFLAGS = \
 	@SQLITE3_LIBS@ \
 	@FREEARRAY_LIBS@ \
 	$(NULL)
-ibus_engine_freearray_LDADD = \
-	libfaft.a \
-	$(NULL)
+#ibus_engine_freearray_LDADD = \
+#	libfaft.la \
+#	$(NULL)
 
 component_DATA = \
 	freearray.xml \
@@ -151,6 +159,7 @@ test: ibus-engine-freearray
 noinst_PROGRAMS = freearray-test
 freearray_test_SOURCES = \
 	test.c \
+ 	$(libfaft_source) \
 	$(NULL)
 freearray_test_CFLAGS = \
 	@IBUS_CFLAGS@ \
@@ -165,6 +174,6 @@ freearray_test_LDFLAGS = \
 	@SQLITE3_LIBS@ \
 	@FREEARRAY_LIBS@ \
 	$(NULL)
-freearray_test_LDADD = \
-	libfaft.a \
-	$(NULL)
+#freearray_test_LDADD = \
+#	libfaft.la \
+#	$(NULL)
