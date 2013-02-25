@@ -1,7 +1,7 @@
 #
 # ibus-freearray - FreeArray for The Input Bus
 #
-# Copyright (c) 2010
+# Copyright (c) 2010, 2013
 # 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@ ACLOCAL_AMFLAGS = -I m4
 
 EXTRA_DIST = \
 	autogen.sh \
-	@PACKAGE_NAME@.spec.in \
 	$(NULL)
 
 noinst_DIST = \
@@ -42,15 +41,4 @@ noinst_DIST = \
 DISTCLEANFILES = \
 	$(NULL)
 
-rpm: dist @PACKAGE_NAME@.spec
-	rpmbuild -bb \
-			--define "_sourcedir `pwd`" \
-			--define "_builddir `pwd`" \
-			--define "_specdir `pwd`" \
-			--define "_rpmdir `pwd`" \
-			--define "_srcrpmdir `pwd`" \
-			@PACKAGE_NAME@.spec
-clean-rpm:
-	$(RM) -r "`uname -i`"
-
-clean-local: clean-rpm
+clean-local: 

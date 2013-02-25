@@ -72,7 +72,6 @@ AC_PREFIX_PROGRAM(ibus-daemon)
 AC_CONFIG_HEADERS([config.h])
 # OUTPUT files
 AC_CONFIG_FILES(Makefile
-ibus-freearray.spec
 src/Makefile
 src/freearray.xml.in
 setup/Makefile
