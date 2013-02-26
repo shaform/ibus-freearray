@@ -33,6 +33,11 @@
 #define MAX_CHOICE (567)
 #define MAX_CHOICE_BUF (50)                   /* max length of the choise buffer */
 #endif
+#ifdef HAVE_INTTYPES_H
+#  include <inttypes.h>
+#elif defined HAVE_STDINT_H
+#  include <stdint.h>
+#endif
 
 #ifndef max
 #define max(a, b) \
@@ -50,8 +55,8 @@ typedef union {
 
 typedef struct {
 	uint16 phone_id;
-	int phrase_id;
-	int child_begin, child_end;
+	int32_t phrase_id;
+	int32_t child_begin, child_end;
 } TreeType;
 
 typedef struct {

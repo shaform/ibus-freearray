@@ -26,7 +26,9 @@
 #define HALFSHAPE_MODE 0
 #endif
 
-
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
 
 /* specified to Chewing API */
 #ifdef WIN32

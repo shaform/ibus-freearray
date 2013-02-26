@@ -67,6 +67,20 @@ PKG_CHECK_MODULES(FREEARRAY, [
     freearray
 ])
 
+# Checks for header files.
+AC_CHECK_HEADERS([fcntl.h inttypes.h libintl.h limits.h stdint.h stdlib.h string.h unistd.h wchar.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_INLINE
+AC_TYPE_INT32_T
+AC_TYPE_SIZE_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+
+# Checks for library functions.
+AC_FUNC_MMAP
+AC_CHECK_FUNCS([getpagesize memchr memmove memset mkdir munmap strcspn strdup])
+
 AC_PREFIX_DEFAULT(/usr)
 AC_PREFIX_PROGRAM(ibus-daemon)
 

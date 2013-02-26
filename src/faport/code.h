@@ -29,9 +29,17 @@
 
 #ifndef IBUS_FREEARRAY_CODEC_H
 #define IBUS_FREEARRAY_CODEC_H
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+#ifdef HAVE_INTTYPES_H
+#  include <inttypes.h>
+#elif defined HAVE_STDINT_H
+#  include <stdint.h>
+#endif
 
-typedef unsigned short FAFTKeyCode;
-typedef unsigned long ArrayCode;
+typedef uint16_t FAFTKeyCode;
+typedef uint32_t ArrayCode;
 
 #define KEYCODE_END (0u)
 #define KEYCODE_ERROR (63u)
