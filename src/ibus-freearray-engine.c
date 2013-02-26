@@ -1,7 +1,7 @@
 /**
  * ibus-freearray - FreeArray for The Input Bus
  *
- * Copyright (c) 2010
+ * Copyright (c) 2010, 2013
  * 	Yong-Siang Shih (Shaform) <shaform at gmail.com>
  *
  * Some code is borrowed from ibus-chewing project.
@@ -179,7 +179,7 @@ static void ibus_faft_refresh_property_list(IBusFreeArrayEngine *faft);
 static IBusProperty *ibus_faft_get_iBusProperty(IBusFreeArrayEngine *faft, const gchar *prop_name);
 static IBusText *ibus_faft_make_preedit_string(IBusFreeArrayEngine *faft, gint *cursor);
 /* done */
-static void ibus_config_value_changed (IBusConfig *config, const gchar *section, const gchar *name, GValue *value, gpointer user_data);
+static void ibus_config_value_changed (IBusConfig *config, const gchar *section, const gchar *name, GVariant *value, gpointer user_data);
 
 
 
@@ -219,12 +219,12 @@ static void ibus_faft_engine_class_init(IBusFreeArrayEngineClass *klass)
 	IBusEngineClass *engine_class = IBUS_ENGINE_CLASS (klass);
 
 	/* Init property labels */
-	klass->variety_prop_label_chi = ibus_text_new_from_static_string("Chi");
-	klass->variety_prop_label_eng = ibus_text_new_from_static_string("Eng");
-	klass->shape_prop_label_full = ibus_text_new_from_static_string("Full");
-	klass->shape_prop_label_half = ibus_text_new_from_static_string("Half");
-	klass->settings_prop_label = ibus_text_new_from_static_string("Settings");
-	klass->emptyText = ibus_text_new_from_static_string("");
+	klass->variety_prop_label_chi = g_object_ref_sink(ibus_text_new_from_static_string("Chi"));
+	klass->variety_prop_label_eng = g_object_ref_sink(ibus_text_new_from_static_string("Eng"));
+	klass->shape_prop_label_full = g_object_ref_sink(ibus_text_new_from_static_string("Full"));
+	klass->shape_prop_label_half = g_object_ref_sink(ibus_text_new_from_static_string("Half"));
+	klass->settings_prop_label = g_object_ref_sink(ibus_text_new_from_static_string("Settings"));
+	klass->emptyText = g_object_ref_sink(ibus_text_new_from_static_string(""));
 
 	/* Init class methods */
 	parent_class = g_type_class_ref (IBUS_TYPE_ENGINE);
@@ -253,33 +253,32 @@ static void ibus_faft_engine_class_init(IBusFreeArrayEngineClass *klass)
 static void ibus_faft_engine_init(IBusFreeArrayEngine *faft)
 {
 	faft->context = NULL;
-	faft->table = ibus_lookup_table_new(10,0,FALSE,TRUE);
+	faft->table = g_object_ref_sink(ibus_lookup_table_new(10,0,FALSE,TRUE));
 	faft->config = NULL;
 
 
 	/* Set up property buttons */
 	faft->variety_prop = 
-		ibus_property_new("freearray_variety_prop", PROP_TYPE_NORMAL,
-				IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->variety_prop_label_chi,
-				NULL, NULL, TRUE, TRUE,
-				PROP_STATE_UNCHECKED, NULL);
+        g_object_ref_sink(
+                ibus_property_new("freearray_variety_prop", PROP_TYPE_NORMAL,
+                    IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->variety_prop_label_chi,
+                    NULL, NULL, TRUE, TRUE,
+                    PROP_STATE_UNCHECKED, NULL));
 	faft->shape_prop = 
-		ibus_property_new("freearray_shape_prop", PROP_TYPE_NORMAL,
-				IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->shape_prop_label_half,
-				NULL, NULL, TRUE, TRUE,
-				PROP_STATE_UNCHECKED, NULL);
-
-	IBusText *settings_tooltip = ibus_text_new_from_string("Configure FreeArray engine");
+        g_object_ref_sink(
+                ibus_property_new("freearray_shape_prop", PROP_TYPE_NORMAL,
+                    IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->shape_prop_label_half,
+                    NULL, NULL, TRUE, TRUE,
+                    PROP_STATE_UNCHECKED, NULL));
 
 	faft->settings_prop = 
-		ibus_property_new("freearray_settings_prop", PROP_TYPE_NORMAL,
-				IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->settings_prop_label,
-				"gtk-preferences", NULL, TRUE, TRUE,
-				PROP_STATE_UNCHECKED, NULL);
+        g_object_ref_sink(
+                ibus_property_new("freearray_settings_prop", PROP_TYPE_NORMAL,
+                    IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->settings_prop_label,
+                    "gtk-preferences", NULL, TRUE, TRUE,
+                    PROP_STATE_UNCHECKED, NULL));
 
-	g_object_unref((gpointer) settings_tooltip);
-
-	faft->prop_list = ibus_prop_list_new();
+	faft->prop_list = g_object_ref_sink(ibus_prop_list_new());
 
 	/* initialize the object here */
 	if (!(faft->status & ENGINE_STATUS_INITIALIZED)) {
@@ -392,15 +391,7 @@ static void ibus_faft_engine_enable(IBusEngine * engine)
 	IBusFreeArrayEngine *faft = IBUS_FREEARRAY_ENGINE(engine);
 
 	if (!faft->config){
-		/* connections_list is not avail in init, so we put it here */
-		GList *connections_list = ibus_service_get_connections(IBUS_SERVICE(engine));
-		g_assert(connections_list);
-		g_assert(connections_list->data);
-		IBusConnection *iConnection = (IBusConnection *) connections_list->data;
-		faft->config = ibus_config_new(iConnection);
-		ibus_faft_load_setting(faft);
-		g_signal_connect (faft->config, "value-changed",
-				G_CALLBACK(ibus_config_value_changed), faft);
+        ibus_faft_load_setting(faft);
 	}
 	ibus_faft_refresh_property_list(faft);
 
@@ -957,7 +948,7 @@ static void ibus_faft_update_lookup_table(IBusFreeArrayEngine *faft)
 		for(i=0; i < page_size; i++) {
 			if (faft_context_cand_has_next(ctx)) {
 				candidate = faft_context_cand_string(ctx);
-				iText = ibus_text_new_from_string((gpointer) candidate);
+				iText = g_object_ref_sink(ibus_text_new_from_string((gpointer) candidate));
 				ibus_lookup_table_append_candidate(faft->table, (gpointer) iText);
 
 				g_free((gpointer)candidate);
@@ -973,7 +964,7 @@ static void ibus_faft_update_lookup_table(IBusFreeArrayEngine *faft)
 		for(i=0; i < page_size; i++) {
 			if (faft_context_quick_input_has_next(ctx)) {
 				candidate = faft_context_get_quick_input_string(ctx);
-				iText = ibus_text_new_from_string((gpointer) candidate);
+				iText = g_object_ref_sink(ibus_text_new_from_string((gpointer) candidate));
 				ibus_lookup_table_append_candidate(faft->table, (gpointer) iText);
 				g_free((gpointer)candidate);
 				g_object_unref((gpointer)iText);
@@ -1031,7 +1022,7 @@ static IBusText *ibus_faft_make_preedit_string(IBusFreeArrayEngine *faft, gint *
 		preeditBuf = buff_str;
 
 	int testlen = strlen(preeditBuf);
-	IBusText *iText = ibus_text_new_from_string(preeditBuf);
+	IBusText *iText = g_object_ref_sink(ibus_text_new_from_string(preeditBuf));
 	g_free((gpointer) preeditBuf);
 
 	if (iText == NULL) return NULL;
@@ -1081,7 +1072,7 @@ void ibus_faft_set_lookup_table_label(IBusFreeArrayEngine *faft, const gchar * l
 	int i,len=strlen(labels);
 	g_array_set_size(faft->table->labels,0);
 	for(i=0;i<len;i++){
-		IBusText *text = ibus_text_new_from_unichar((gunichar) labels[i]);
+		IBusText *text = g_object_ref_sink(ibus_text_new_from_unichar((gunichar) labels[i]));
 		ibus_lookup_table_append_label (faft->table,text);
 	}
 }
@@ -1104,7 +1095,7 @@ static void ibus_faft_commit(IBusFreeArrayEngine *faft)
 
 		gchar *commit_string = faft_context_get_commit_string(ctx);
 		if (commit_string && commit_string[0]) {
-			iText = ibus_text_new_from_string(commit_string);
+			iText = g_object_ref_sink(ibus_text_new_from_string(commit_string));
 			ibus_engine_commit_text(IBUS_ENGINE(faft), iText);
 			g_free((gpointer) commit_string);
 
@@ -1149,12 +1140,13 @@ static void ibus_faft_refresh_property(IBusFreeArrayEngine *faft, const gchar *p
 	FAFTContext *ctx = faft->context;
 
 	if (g_strcmp0(prop_name,"freearray_variety_prop") == 0) {
-		if (faft_context_get_variety(ctx) == FAFT_VARIETY_ENG)
+		if (faft_context_get_variety(ctx) == FAFT_VARIETY_ENG) {
 			ibus_property_set_label(faft->variety_prop,
 					IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->variety_prop_label_eng);
-		else
+        } else {
 			ibus_property_set_label(faft->variety_prop,
 					IBUS_FREEARRAY_ENGINE_GET_CLASS(faft)->variety_prop_label_chi);
+        }
 
 		ibus_engine_update_property(IBUS_ENGINE(faft), faft->variety_prop);
 
@@ -1181,28 +1173,34 @@ static void ibus_faft_hide_property_list(IBusFreeArrayEngine *faft)
 
 static void ibus_faft_load_setting(IBusFreeArrayEngine *faft)
 {
-	if (!(faft && faft->config)) return;
+	if (faft == NULL) return;
+    GError *error = NULL;
+    GDBusConnection *connection = ibus_service_get_connection(IBUS_SERVICE(faft));
+    faft->config = g_object_ref_sink(ibus_config_new(connection, NULL, &error));
+    g_assert(error == NULL);
+    g_signal_connect (faft->config, "value-changed",
+            G_CALLBACK(ibus_config_value_changed), faft);
 	int i;
-	GValue val={0};
+	GVariant *gVar;
 
 	for (i=0; ibus_faft_properties[i].key[0]; i++) {
-		if (ibus_config_get_value(faft->config, "engine/FreeArray", ibus_faft_properties[i].key, (gpointer) &val))
+        gVar = ibus_config_get_value(faft->config, "engine/FreeArray", ibus_faft_properties[i].key);
+        if (gVar != NULL)
 
-			ibus_config_value_changed(faft->config, "engine/FreeArray", ibus_faft_properties[i].key, (gpointer) &val, faft);
+            ibus_config_value_changed(faft->config, "engine/FreeArray", ibus_faft_properties[i].key, gVar, faft);
 
 		else {
-			g_value_init((gpointer) &val, G_TYPE_INT);
-			g_value_set_int((gpointer) &val, ibus_faft_properties[i].def);
-			ibus_config_set_value(faft->config, "engine/FreeArray", ibus_faft_properties[i].key, (gpointer) &val);
+            gVar = g_variant_new_int32(ibus_faft_properties[i].def);
+			ibus_config_set_value(faft->config, "engine/FreeArray", ibus_faft_properties[i].key, gVar);
 		}
-		g_value_unset((gpointer) &val);
+        g_variant_unref(gVar);
 	}
 }
 
 static void ibus_config_value_changed(IBusConfig *config,
 		const gchar *section,
 		const gchar *name,
-		GValue *value,
+		GVariant *value,
 		gpointer user_data)
 {
 	IBusFreeArrayEngine *faft = IBUS_FREEARRAY_ENGINE(user_data);
@@ -1215,7 +1213,7 @@ static void ibus_config_value_changed(IBusConfig *config,
 		return;
 
 	if (g_strcmp0(section, "engine/FreeArray") == 0) {
-		gint val_d = g_value_get_int(value);
+		gint val_d = g_variant_get_int32(value);
 
 		if (g_strcmp0(name, "KbType") == 0)
 			if (val_d == FREEARRAY_KBTYPE_DVORAK)
