@@ -1,13 +1,13 @@
-ibus-faft - FreeArray for Test for the Input Bus
+ibus-freearray - FreeArray Input Method for IBus Framework
 
 Installation Notes
 ==================
-By default, `make install' installs the ibus-faft component xml file
+By default, `make install' installs the ibus-freearray component xml file
 under `/usr/local/share/ibus/component', which may not be right.
 Depending on where you installed ibus, you should specify an installation
 prefix manually, it's most likely to be: `./configure --prefix=/usr'
 
-ibus-faft requires libibus-dev and libsqlite3-dev to build, if you use
+ibus-freearray requires libibus-dev and libsqlite3-dev to build, if you use
 Ubuntu, type the follownig in the terminal to install them:
 `sudo aptitude install libibus-dev libsqlite3-dev'
 
@@ -20,18 +20,32 @@ The normal installation process:
 
 Introduction
 ==================
-ibus-faft - FreeArray for Test for the Input Bus
+ibus-freearray - FreeArray for Test for the Input Bus
 
-ibus-faft is a Chinese input engine for IBus.
+ibus-freearray is a Chinese input engine for IBus.
 Based on Array 30, it includes the phrasing module of libchewing and
 introduces a new way of inputting symbols called Array Symbol Input.
 Also, it fully supports qwerty & dvorak keyboard layouts.
 
-ibus-faft is a technical preview and experimental work of freearray input method.
+ibus-freearray is a technical preview and experimental work of freearray input method.
 It is intended to be used to test the possibility of freearray only.
 
-ibus-faft is free software, it is released under GPLv3, see COPYING for detail.
+Copyright
+==================
 
+ibus-freearray incorporates code from the following projects:
+
+libchewing - Copyright (c) 2008 libchewing Core Team.
+                                http://chewing.csie.net/
+
+ibus-chewing - Copyright (c) 2009 Red Hat, Inc.
+               Copyright (c) 2009 Ding-Yi Chen <dchen at redhat.com>
+
+ibus-array - Copyright (c) 2009 Yu-Chun Wang <mainlander1122@gmail.com>
+
+
+ibus-freearray is free software, the entire package is released
+under GPLv3, see COPYING for detail.
 
 
 Notes
@@ -45,7 +59,7 @@ Also, pressing easy symbol key for two times also activate autoclear.
 In auto input mode, pressing valid KeyCode keys for two times
 when the KeyCode buffer is full and cannot get the right character,
 autoclear would also be activated if in auto-clear-mode. If you
-press a easy symbol key, ibus-faft would try to input the KeyCodes
+press a easy symbol key, ibus-freearray would try to input the KeyCodes
 in the buffer, and input the symbol afterward if succeeded,
 if not succeeded, auto-clear may be activated to clear the KeyCodes,
 in that case, the symbol would be input also.
@@ -53,13 +67,13 @@ in that case, the symbol would be input also.
 
 The implementation of short code, special code and phrase input
 
-When you input a phrase, ibus-faft would try to find
+When you input a phrase, ibus-freearray would try to find
 the original ArrayCode of every character in the phrase,
-and input them one by one. While doing this, ibus-faft
+and input them one by one. While doing this, ibus-freearray
 would create a select interval for every one of them to prevent
 the character from being changed by the phrasing module.
 
 It works almost the same when you input a short code/special code
 character, but the original ArrayCode of every character in Short Code
 input & Special Code input is stored in the database already.
-So ibus-faft would not need to find it in somewhere else.
+So ibus-freearray would not need to find it in somewhere else.

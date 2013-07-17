@@ -1,1 +1,12 @@
 Yong-Siang Shih (Shaform) <shaform@gmail.com>
+
+
+ibus-freearray incorporates code from the following projects:
+
+libchewing - Copyright (c) 2008 libchewing Core Team.
+                                http://chewing.csie.net/
+
+ibus-chewing - Copyright (c) 2009 Red Hat, Inc.
+               Copyright (c) 2009 Ding-Yi Chen <dchen at redhat.com>
+
+ibus-array - Copyright (c) 2009 Yu-Chun Wang <mainlander1122@gmail.com>
