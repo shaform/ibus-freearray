@@ -5,8 +5,11 @@ ibus-freearray incorporates code from the following projects:
 
 libchewing - Copyright (c) 2008 libchewing Core Team.
                                 http://chewing.csie.net/
+             License: GNU LGPL 2.1
 
 ibus-chewing - Copyright (c) 2009 Red Hat, Inc.
                Copyright (c) 2009 Ding-Yi Chen <dchen at redhat.com>
+               License: GNU GPL 2 or (at your option) any later version
 
 ibus-array - Copyright (c) 2009 Yu-Chun Wang <mainlander1122@gmail.com>
+             License: GNU GPL 3
